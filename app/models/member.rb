@@ -42,22 +42,18 @@ class Member < ActiveRecord::Base
     end
 
     def search(field: nil, term: nil)
-      result = case field
-               when 'email'
-                 where('members.email LIKE ?', "%#{term}%")
-               when 'name'
-                 where('members.name LIKE ?', "%#{term}%")
-               when 'wallet_address'
-                 members = joins(:fund_sources).where('fund_sources.uid' => term)
-                 if members.empty?
-                  members = joins(:payment_addresses).where('payment_addresses.address' => term)
-                 end
-                 members
-               else
-                 all
-               end
-
-      result.order(:id).reverse_order
+      case field
+        when 'email', 'name', 'sn'
+          where("members.#{field} LIKE ?", "%#{term}%")
+        when 'wallet_address'
+          members = joins(:fund_sources).where('fund_sources.uid' => term)
+          if members.empty?
+            members = joins(:payment_addresses).where('payment_addresses.address' => term)
+          end
+          members
+        else
+          all
+      end.order(:id).reverse_order
     end
 
     private
@@ -185,3 +181,24 @@ class Member < ActiveRecord::Base
     ::Pusher["private-#{sn}"].trigger_async('members', { type: 'update', id: self.id, attributes: self.changes_attributes_as_json })
   end
 end
+
+# == Schema Information
+# Schema version: 20180215144645
+#
+# Table name: members
+#
+#  id           :integer          not null, primary key
+#  level        :string(20)       default("")
+#  sn           :string(12)       not null
+#  email        :string(255)      not null
+#  disabled     :boolean          default(FALSE), not null
+#  api_disabled :boolean          default(FALSE), not null
+#  name         :string(45)
+#  nickname     :string(32)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+# Indexes
+#
+#  index_members_on_sn  (sn) UNIQUE
+#
