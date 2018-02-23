@@ -1,5 +1,5 @@
 VERSION ?= $(shell cat VERSION)
-IMAGE   := gcr.io/hc-public/peatio:$(VERSION)
+IMAGE   := wirelessjeano/peatio:$(VERSION)
 
 .PHONY: default build push run ci deploy
 
@@ -10,7 +10,7 @@ build:
 	@docker build -t $(IMAGE) .
 
 push: build
-	gcloud docker -- push $(IMAGE)
+	@docker push $(IMAGE)
 
 run:
 	@echo '> Starting "peatio" container...'

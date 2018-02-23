@@ -42,9 +42,9 @@ COPY . $APP_HOME
 RUN chown -R app:app /home/app
 USER app
 
-RUN ./bin/init_config \
-  && chmod +x ./bin/logger \
-  && bundle exec rake tmp:create yarn:install assets:precompile
+RUN ./bin/init_config
+RUN chmod +x ./bin/logger
+RUN bundle exec rake tmp:create yarn:install assets:precompile
 
 # Expose port 8080 to the Docker host, so we can access it
 # from the outside.

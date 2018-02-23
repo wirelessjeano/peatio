@@ -41,6 +41,8 @@ tags
 
 # Ignore RubyMine files
 .idea
+.god
+.bash_history
 
 /vendor/bundle
 /vendor/assets/yarn_components
