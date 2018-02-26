@@ -340,24 +340,6 @@ en:
           price: limit price %{l} ~ %{h}
           sum: limit sum price %{l} ~ %{h}
           precision: minimum precision %{p}
-  banks:
-    icbc: Industryand Commercial Bank of China
-    cbc: Construction Bank of China
-    bc: Bank of China
-    bcm: Bank of Communications
-    abc: Agriculture Bank of China
-    cmb: China Merchants Bank Ltd
-    cmbc: China Minsheng Banking Co., Ltd
-    cncb: China CITIC Bank
-    hxb: Hua Xia Bank Co., Ltd.
-    cib: Industrial Bank Co., Ltd
-    spdb: Shanghai Pudong Development Bank
-    bob: Bank of Beijing
-    ceb: China Everbright Bank CO.LTD
-    sdb: Shenzhen Development Bank
-    pab: Ping An Bank Co., Ltd.
-    gdb: Guangdong Development Bank
-    psbc: Postal Savings Bank of China
   datagrid:
     empty: no data found
     filters:
@@ -544,24 +526,6 @@ en:
       warning: Warning
   private:
     deposits:
-      satoshis:
-        gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
-      bitcoin_cash:
-        gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
-      litoshis:
-        gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
-      ripples:
-        gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
-      duffs:
-        gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
-      ethereums:
-        gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
       banks:
         destroy:
           notice: Revocation request is successful.
